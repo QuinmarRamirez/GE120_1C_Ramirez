@@ -1,29 +1,29 @@
 """
-Hi, this is exercise 1. 
-I am Quinmar Ramirez
+Exercise 1 - Procedural Programming
+Quinmar Q. Ramirez
 2023-14871
 BS Geodetic Engineering
 """
 
-dms = 118.42069
+dd = 118.42069
 
-#Getting degree
-degree = int(dms)
-print("DEGREE:", degree)
+# Getting degrees
+degree = int(dd)
+# print("DEGREES:", degree)
 
-#Getting minutes
-minutes = (dms - degree) * 60
+# Getting minutes
+minutes = (dd - degree) * 60
 minutes_fractional = int(minutes)
-print("MINUTES", minutes)
+# print("MINUTES", minutes)
 
-#Getting seconds
+# Getting seconds
 seconds = (minutes - minutes_fractional) * 60
-print("SECONDS", seconds)
+# print("SECONDS", seconds)
 
-#The Degree-Minute-Second 
+# The Degree-Minute-Second 
 print("DMS: "+ str(degree) + "-" +str(minutes_fractional) + "-" + str(round(seconds, 2)))
 
-#Converting DMS to DD
+# Converting DMS to DD
 dms = "118-25-14.48"
 values = dms.split("-")
 
@@ -33,7 +33,5 @@ seconds = float(values[2])
 
 dd= degrees + (minutes/60) +(seconds/3600)
 
-#The Decimal Degree
+# The Decimal Degree
 print("DD:", round(dd,6))
-
-

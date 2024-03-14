@@ -64,8 +64,6 @@ def azimuthToBearing(distance, azimuth):
 
     departure = -distance * sin(radians(azimuth))
 
-    return departure
-
 
 
 

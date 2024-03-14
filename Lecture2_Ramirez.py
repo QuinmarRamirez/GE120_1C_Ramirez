@@ -9,7 +9,7 @@ print(type(1+4)) #complex
 
 print(type(float(54))) #convert int to float
 
-x=13
+x=14
 y=2
 
 print("Sum of of X and Y: ", x + y) #addition

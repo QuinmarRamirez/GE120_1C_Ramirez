@@ -1,4 +1,4 @@
-# # Lecture 3 Notes
+#  Lecture 3 
 
 
 # # LISTS

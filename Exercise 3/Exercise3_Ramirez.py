@@ -9,14 +9,14 @@ BS Geodetic Engineering
 # from math import cos, sin, radians, sqrt
 
 # def getLatitude (distance, azimuth):
-#     '''
-#     Computing for the Latitude of a given line
-#     Input:
-#     distance - float
-#     azimuth - float
-#     Output:
-#     Latitude - float
-#     '''
+    '''
+    Computing for the Latitude of a given line
+    Input:
+    distance - float
+    azimuth - float
+    Output:
+    Latitude - float
+    '''
 #     latitude = -distance * cos (radians(azimuth))
 
 #     return latitude

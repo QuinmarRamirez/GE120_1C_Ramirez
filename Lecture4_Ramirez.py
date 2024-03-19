@@ -89,28 +89,28 @@ shout("I","am","shouting")
 
 
 # # printing after returning smth
-# def getDirection(degrees):
-#     '''
-#     Gives the direction of an angle
+def getDirection(degrees):
+    '''
+    Gives the direction of an angle
 
-#     Input:
-#     degrees - float
+    Input:
+    degrees - float
 
-#     Output
-#     quadrant - string
-#     '''
+    Output
+    quadrant - string
+    '''
 
-#     print("HELLO DOM")
-#     if degrees > 0 and degrees < 90:
-#         return "S-W"
-#     elif degrees > 90 and degrees < 180:
-#         return "N-W"
-#     elif degrees > 180 and degrees < 270:
-#         return "N-E"
-#     elif degrees > 270 and degrees < 360:
-#         return "S-E"
-#     else:
-#         return "IDK"
+    print("HELLO DOM")
+    if degrees > 0 and degrees < 90:
+        return "S-W"
+    elif degrees > 90 and degrees < 180:
+        return "N-W"
+    elif degrees > 180 and degrees < 270:
+        return "N-E"
+    elif degrees > 270 and degrees < 360:
+        return "S-E"
+    else:
+        return "IDK"
 
 # dms = "100-12-14"
 # dd = convertDMStoDEG(dms)

@@ -1,8 +1,4 @@
-# 
-
-# int(56)
-
-# print((float(54))) #convert int to float
+Lecture 2
 
 # print(9.conjugate(8))
 # x=5
@@ -71,6 +67,7 @@ Quinmar Q. Ramirez
 2023-14871
 BS Geodetic Engineering
 """
+
 
 # dd = 118.42069
 

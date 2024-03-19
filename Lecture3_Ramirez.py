@@ -1,4 +1,5 @@
-# # Lecture 3Notes
+# # Lecture 3 Notes
+
 
 # # LISTS
 # listahan = ["mafe", "justin", "mika", "uste"]

@@ -65,7 +65,7 @@ while True:
 # Printing
 print("\nLevelling Table:")
 print("--------------------------------------------------------")
-print("Backsight | Height of Instrument | Foresight | Elevation")
+print("Station | Height of Instrument | Foresight | Elevation")
 print("--------------------------------------------------------")
 
 for data in levelling_table:

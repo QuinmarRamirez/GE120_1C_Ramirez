@@ -1,3 +1,4 @@
+Lecture 4
 # FUNCTIONS: because the uphold the DRY principle (Don't repeat Yourself)
 
 # print("Hello World")

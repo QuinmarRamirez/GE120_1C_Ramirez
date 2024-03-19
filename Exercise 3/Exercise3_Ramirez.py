@@ -161,8 +161,8 @@ BS Geodetic Engineering
 # print(f"The area of the rectangle with length {length} and width {width} is: {rectangle_area}")
 
 
-def hey(word1, ilang_beses):
+# def hey(word1, ilang_beses):
 
-    print(word1.upper() + word1[-1]*5 + "!!!!")
+#     print(word1.upper() + word1[-1]*5 + "!!!!")
 
-hey("jem", 2)
+# hey("jem", 2)

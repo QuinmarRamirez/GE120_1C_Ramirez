@@ -1,0 +1,22 @@
+listahan = ["mafe", "justin", "mika", "uste"]
+# print(listahan)
+
+# # gusto si mika makuha (position)
+# print(listahan[2])
+
+# # subset of the list, mafe and si justin
+# print(listahan[0:2])
+
+# # print(listahan[1:3])
+
+# # nagstastart sa simula
+# print(listahan[:3])
+
+# # start from index, end sa dulo
+# print(listahan[2:])
+
+# print(listahan[-1])
+# print(listahan[-2])
+
+# # gets first item, last item, then those in between
+print(listahan[-3:3])

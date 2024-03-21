@@ -1,168 +1,193 @@
 """
-Exercise 3 - Functional Programming
+Exercise 3 - Functional Programming 
 Quinmar Q. Ramirez
 2023-14871
 BS Geodetic Engineering
 """
 
+from math import cos, sin, atan, radians, sqrt
+from prettytable import PrettyTable
 
-# from math import cos, sin, radians, sqrt
-
-# def getLatitude (distance, azimuth):
+def getLatitude(distance, azimuth_from_the_south): 
     '''
-    Computing for the Latitude of a given line
+    Compute for the latitude of a given line.
+
     Input:
-    distance - float
-    azimuth - float
+    Distance - float
+    Azimuth - float
+
     Output:
     Latitude - float
     '''
-#     latitude = -distance * cos (radians(azimuth))
 
-#     return latitude
+    latitude = -distance * cos (radians(azimuth_from_the_south))
 
-# def getDeparture (distance, azimuth):
-#     '''
-#     Computing for the Departure of a given line
-#     Input:
-#     distance - float
-#     azimuth - float
-#     Output:
-#     Departure - float
-#     '''
-#     departure = -distance * sin (radians(azimuth))
+    return latitude
 
-#     return departure
+def getDeparture (distance, azimuth_from_the_south):
+    '''
+    Compute for the departure of a given line.
 
+    Input:
+    Aistance - float
+    Azimuth - float
 
-# def azimuthToBearing (azimuth):
-#     '''
-#     Computing for the DMS bearing of a given angle
-#     Input:
-#     azimuth - float
-#     Output:
-#     bearing - string
-#     '''
+    Output:
+    Departure - float
+    '''
+    departure = -distance * sin (radians(azimuth_from_the_south))
+
+    return departure
 
 
-# counter = 1
-# lines = []
-# sumLat = 0
-# sumDep = 0    
-# sumDist = 0
-# while True:
+def azimuthToBearing (azimuth_from_the_south):
+    '''
+    Convert azimuth (in decimal degrees) to bearing. 
+
+    Input:
+    azimuth - float
+
+    Output:
+    bearing - string
+    '''
+
+    return bearing
+
+# Initializing Variables
+counter = 1
+lines = []
+sumLat = 0
+sumDep = 0    
+sumDist = 0
+
+table = PrettyTable()
+table.field_names = ["LINE NO.", "DISTANCE", "BEARING", "LATITUDE", "DEPARTURE", "CORRECTION TO LATITUDE","CORRECTION TO DEPARTURE"]
 
 
-#     print ()
-#     print ("LINE NO.", counter )
+while True:
 
-#     input_error = False
-#     while not(input_error):
-#         distance = input ("Distance:")
-#         if input_error:
-#             print("INPUT ERROR")
-#             continue
-#         if not (input_error):
-#             break
+    print()
+    print("LINE NO. ", counter)
+     
+    # Input Distance
+    invalid_syntax = True  
+    while invalid_syntax:
+        distance = input("ENTER DISTANCE: ")
+        try:
+           distance = float(distance)
+           if distance < 0:  # Check if the input is negative
+               print("Distance must be a positive number.")
+           else:
+               invalid_syntax = False  # Valid input, exit the loop
+        except ValueError:
+               print("Invalid Syntax. Distance must be a number.")
+
+    # Input Azimuth
+    azimuth_from_the_south = float(input("ENTER AZIMUTH FROM THE SOUTH (in decimal degrees): ")) 
+
+# Converting Decimal Degrees to Degrees-Minutes-Seconds
+    degrees = int(azimuth_from_the_south)
+    remainder = abs(azimuth_from_the_south - degrees) * 60
+    minutes = int(remainder)
+    seconds = (remainder - minutes) * 60
+
+    dms_azimuth = "{}-{}-{:.2f}" .format(degrees, minutes, seconds)
+
+# Assigning Azimuth to Bearing
+    if azimuth_from_the_south > 0 and azimuth_from_the_south  < 90:
+        dms_bearing = 'S {: ^10} W' .format(dms_azimuth)
+
+    elif azimuth_from_the_south > 90 and azimuth_from_the_south < 180: 
+        bearing_1 = 180 - azimuth_from_the_south 
+        degrees_1 = int(bearing_1)  
+        remainder_minutes_1 = (bearing_1 - degrees_1) * 60 
+        minutes_1 = int(remainder_minutes_1) 
+        remainder_seconds_1 = (remainder_minutes_1 - minutes_1) * 60 
+        seconds_1 = round(remainder_seconds_1, 2) 
+        dms_bearing = "N    {}-{}-{:.2f}    W".format(degrees_1, minutes_1, seconds_1)
+        
+
+    elif azimuth_from_the_south > 180 and azimuth_from_the_south < 270:
+        bearing_2 = azimuth_from_the_south - 180
+        degrees_2 = int(bearing_2)  
+        remainder_minutes_2 = (bearing_2 - degrees_2) * 60   
+        minutes_2 = int(remainder_minutes_2)
+        remainder_seconds_2 = (remainder_minutes_2 - minutes_2) * 60 
+        seconds_2 = round(remainder_seconds_2, 2) 
+        dms_bearing = "N    {}-{}-{:.2f}    E".format(degrees_2, minutes_2, seconds_2)
     
-#     azimuth = input ("Azimuth from the South (DD or DMS): ") 
-#     bearing = azimuthToBearing(azimuth)
-#     if "-" in str(azimuth): 
-#         degrees, minutes, seconds = azimuth.split("-")
-#         azimuth = (int(degrees)) + (int(minutes)/60) + (float(seconds)/3600)%360
-#     else:
-#         azimuth = float (azimuth)%360
+    elif azimuth_from_the_south > 270 and azimuth_from_the_south < 360:
+        bearing_3 = 360 - azimuth_from_the_south
+        degrees_3 = int(bearing_3)  
+        remainder_minutes_3 = (bearing_3 - degrees_3) * 60  
+        minutes_3 = int(remainder_minutes_3)
+        remainder_seconds_3 = (remainder_minutes_3 - minutes_3) * 60 
+        seconds_3 = round(remainder_seconds_3, 2) 
+        dms_bearing = "S    {}-{}-{:.2f}    E".format(degrees_3, minutes_3, seconds_3)
+   
+    elif azimuth_from_the_south ==0:
+        dms_bearing = "DUE SOUTH"
 
-#     if azimuth > 0 and azimuth < 90:
-#         bearing = 'S {: ^10} W' .format (azimuth)
-#     elif azimuth > 90 and azimuth < 180:
-#         bearing = 'N {: ^10} W' .format (180 - azimuth)
-#     elif azimuth > 180 and azimuth < 270:
-#         bearing = 'N {: ^10} E' .format (azimuth - 180)
-#     elif azimuth > 270 and azimuth < 360:
-#         bearing = 'S {: ^10} E' .format (360 - azimuth)
-#     elif azimuth == 0:
-#         bearing = "DUE SOUTH"
-#     elif azimuth == 90:
-#         bearing = "DUE WEST"
-#     elif azimuth == 180:
-#         bearing = "DUE NORTH"
-#     elif azimuth == 270:
-#         bearing = "DUE EAST"
-#     else:
-#         bearing = "UNKNOWN"
+    elif azimuth_from_the_south ==90:
+        dms_bearing = "DUE WEST"
 
+    elif azimuth_from_the_south ==180:
+        dms_bearing = "DUE NORTH"
 
+    elif azimuth_from_the_south ==270:
+        dms_bearing = "DUE EAST"
 
-#     lat = getLatitude(azimuth=float(azimuth), distance=float(distance))
-#     dep = getDeparture(azimuth=float(azimuth), distance=float(distance))
+    else:
+        dms_bearing = "NOT APPLICABLE, CHECK INPUT"
 
-#     sumLat += lat
-#     sumDep += dep
-#     sumDist += float(distance)
+# Getting the Latitude and Departure
+    lat = getLatitude(azimuth_from_the_south=float(azimuth_from_the_south), distance=float(distance))
+    dep = getDeparture(azimuth_from_the_south=float(azimuth_from_the_south), distance=float(distance))
 
-#     line = (counter, distance, bearing, lat, dep,)
-#     lines.append(line)
+# Getting the Summation of Latitude and Departure
+    sumLat += lat
+    sumDep += dep
+    sumDist += float(distance)
 
-#     yn = input("Add new line? ")
-#     if yn.lower() == "yes" or yn.lower() == "y":
-#         counter = counter + 1
-#         continue
-#     else:
-#         break
-# print(line)
-# print ("\n\n")
-# print ('{: ^10} {: ^10} {: ^15} {: ^15} {: ^18}' .format ("LINE NO.", "DISTANCE", "BEARING", "LATITUDE", "DEPARTURE"))
-# for line in lines:
-#     print ('{: ^10} {: ^10} {: ^15} {: ^15} {: ^18}' .format (line [0], line [1], line [2], line [3], line [4]))
+# Getting the Correction to Latitude and Departure
+    corr_lat = (-sumLat*(float(distance)/sumDist))
+    corr_dep = (-sumDep*(float(distance)/sumDist))
 
-# print("SUMMATION OF LAT:", sumLat)
-# print("SUMMATION OF DEP:", sumDep)
-# print("SUMMATION OF DIST:", sumDist)
+# Getting the Adjusted Latitude and Departure
+    # adjLat = (lat + corr_lat)
+    # adjDep = (dep + corr_dep)
 
-# lec = sqrt((sumLat**2) + (sumDep**2))
+# Getting the Adjusted Distance
+    # adjDist = sqrt((adjLat**2) + (adjDep**2))
 
-# print ("LEC:", lec)
-# rec = sumDist/lec
-# print("1: ", round(rec, -3))
+# Creating a line tuple and adding to lines list
+    line = (counter, distance, dms_bearing, lat, dep, corr_lat, corr_dep)
+    lines.append(line)
 
-# constCorrLat = -sumLat/sumDist
-# constCorrDep = -sumDep/sumDist
+    table.add_row(line)
 
+# Asking the user to continue
+    yn = input("ADD NEW LINE [yes/no]?")
+    if yn.lower() == "yes" or yn.lower() == "y":
+        counter = counter + 1
+        continue
+    else:
+        break
 
-# corr_lat = constCorrLat * float(line[1])
-# corr_dep = constCorrDep * float(line[1])
+# Printing
+print("\n\n")
+print(table)
 
-# adjLat = line[3] + corr_lat
-# adjDep = line[4] + corr_dep
+print("SUMMATION OF LAT:", sumLat)
+print("SUMMATION OF DEP:", sumDep)
+print("SUMMATION OF DIST:", sumDist)
 
-# print ("Adjusted Latitude: ", adjLat)
-# print ("Adjusted Departure: ", adjDep)
+lec = sqrt((sumLat ** 2) + (sumDep ** 2))
 
-# print ("-----END-----")
+print("LEC: ", lec)
 
+REC = sumDist / lec
 
-# Define a function named 'calculate_rectangle_area' that takes 'length' and 'width' as parameters
-# def calculate_rectangle_area(length, width):
-#     # Calculate the area of the rectangle using the formula: area = length * width
-#     area = length * width
-#     # Return the calculated area
-#     return area
+print("REC = 1: ", round(REC, -3))
 
-# # Prompt the user to enter the dimensions of the rectangle
-# # length = float(("Enter the length of the rectangle: "))
-# # width = float(("Enter the width of the rectangle: "))
-
-# # Call the 'calculate_rectangle_area' function with user-provided length and width
-# # The returned area is assigned to the variable 'rectangle_area'
-# rectangle_area = calculate_rectangle_area(length, width)
-
-# # Display the calculated area of the r
-# print(f"The area of the rectangle with length {length} and width {width} is: {rectangle_area}")
-
-
-# def hey(word1, ilang_beses):
-
-#     print(word1.upper() + word1[-1]*5 + "!!!!")
-
-# hey("jem", 2)
+print("--------------END----------------")

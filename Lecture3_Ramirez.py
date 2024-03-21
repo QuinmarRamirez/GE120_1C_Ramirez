@@ -136,7 +136,7 @@ while True:
         bearing = azimuth - 180
         degrees_2 = int(bearing)  
         int_azimuth = int(azimuth)
-        remainder_minutes_2 = (azimuth - int_azimuth) * 60  # 
+        remainder_minutes_2 = (azimuth - int_azimuth) * 60   
         minutes_2 = int(remainder_minutes_1)
         remainder_seconds_2 = (remainder_minutes_2 - minutes_2) * 60 
         seconds_2 = round(remainder_seconds_2, 2) 

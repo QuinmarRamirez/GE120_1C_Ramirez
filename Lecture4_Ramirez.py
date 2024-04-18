@@ -111,7 +111,7 @@ def getDirection(degrees):
         return "S-E"
     else:
         return "IDK"
-
+jj
 # dms = "100-12-14"
 # dd = convertDMStoDEG(dms)
 # direction = getDirection(dd)

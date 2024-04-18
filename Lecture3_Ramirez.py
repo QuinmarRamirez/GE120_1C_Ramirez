@@ -158,7 +158,7 @@ while True:
 
     elif azimuth ==90:
         dms_bearing = "DUE WEST"
-
+jj
     elif azimuth ==180:
         dms_bearing = "DUE NORTH"
 

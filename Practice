@@ -85,7 +85,7 @@ while True:
 
     print()
     print("LINE NO. ", counter)
-     
+     h
     # Input Distance
     invalid_syntax = True  
     while invalid_syntax:

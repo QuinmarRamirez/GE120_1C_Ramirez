@@ -1,22 +1,210 @@
-listahan = ["mafe", "justin", "mika", "uste"]
-# print(listahan)
+# listahan = ["mafe", "justin", "mika", "uste"]
+# # print(listahan)
 
-# # gusto si mika makuha (position)
-# print(listahan[2])
+# # # gusto si mika makuha (position)
+# # print(listahan[2])
 
-# # subset of the list, mafe and si justin
-# print(listahan[0:2])
+# # # subset of the list, mafe and si justin
+# # print(listahan[0:2])
 
-# # print(listahan[1:3])
+# # # print(listahan[1:3])
 
-# # nagstastart sa simula
-# print(listahan[:3])
+# # # nagstastart sa simula
+# # print(listahan[:3])
 
-# # start from index, end sa dulo
-# print(listahan[2:])
+# # # start from index, end sa dulo
+# # print(listahan[2:])
 
-# print(listahan[-1])
-# print(listahan[-2])
+# # print(listahan[-1])
+# # print(listahan[-2])
 
-# # gets first item, last item, then those in between
-print(listahan[-3:3])
+# # # gets first item, last item, then those in between
+# print(listahan[-3:3])
+
+
+from math import cos, sin, atan, radians, sqrt
+from prettytable import PrettyTable
+
+def getLatitude(distance, azimuth_from_the_south): 
+    '''
+    Compute for the latitude of a given line.
+
+    Input:
+    Distance - float
+    Azimuth - float
+
+    Output:
+    Latitude - float
+    '''
+
+    latitude = -distance * cos (radians(azimuth_from_the_south))
+
+    return latitude
+
+def getDeparture (distance, azimuth_from_the_south):
+    '''
+    Compute for the departure of a given line.
+
+    Input:
+    Aistance - float
+    Azimuth - float
+
+    Output:
+    Departure - float
+    '''
+    departure = -distance * sin (radians(azimuth_from_the_south))
+
+    return departure
+
+
+def azimuthToBearing (azimuth_from_the_south):
+    '''
+    Convert azimuth (in decimal degrees) to bearing. 
+
+    Input:
+    azimuth - float
+
+    Output:
+    bearing - string
+    '''
+
+    return bearing
+
+# Initializing Variables
+counter = 1
+lines = []
+sumLat = 0
+sumDep = 0    
+sumDist = 0
+
+table = PrettyTable()
+table.field_names = ["LINE NO.", "DISTANCE", "BEARING", "LATITUDE", "DEPARTURE", "ADJUSTED LAT","ADJUSTED DEP"]
+
+
+while True:
+
+    print()
+    print("LINE NO. ", counter)
+     
+    # Input Distance
+    invalid_syntax = True  
+    while invalid_syntax:
+        distance = input("ENTER DISTANCE: ")
+        try:
+           distance = float(distance)
+           if distance < 0:  # Check if the input is negative
+               print("Distance must be a positive number.")
+           else:
+               invalid_syntax = False  # Valid input, exit the loop
+        except ValueError:
+               print("Invalid Syntax. Distance must be a number.")
+
+    # Input Azimuth
+    azimuth_from_the_south = float(input("ENTER AZIMUTH FROM THE SOUTH (in decimal degrees): ")) 
+
+# Converting Decimal Degrees to Degrees-Minutes-Seconds
+    degrees = int(azimuth_from_the_south)
+    remainder = abs(azimuth_from_the_south - degrees) * 60
+    minutes = int(remainder)
+    seconds = (remainder - minutes) * 60
+
+    dms_azimuth = "{}-{}-{:.2f}" .format(degrees, minutes, seconds)
+
+# Assigning Azimuth to Bearing
+    if azimuth_from_the_south > 0 and azimuth_from_the_south  < 90:
+        dms_bearing = 'S {: ^10} W' .format(dms_azimuth)
+
+    elif azimuth_from_the_south > 90 and azimuth_from_the_south < 180: 
+        bearing_1 = 180 - azimuth_from_the_south 
+        degrees_1 = int(bearing_1)  
+        remainder_minutes_1 = (bearing_1 - degrees_1) * 60 
+        minutes_1 = int(remainder_minutes_1) 
+        remainder_seconds_1 = (remainder_minutes_1 - minutes_1) * 60 
+        seconds_1 = round(remainder_seconds_1, 2) 
+        dms_bearing = "N    {}-{}-{:.2f}    W".format(degrees_1, minutes_1, seconds_1)
+        
+
+    elif azimuth_from_the_south > 180 and azimuth_from_the_south < 270:
+        bearing_2 = azimuth_from_the_south - 180
+        degrees_2 = int(bearing_2)  
+        remainder_minutes_2 = (bearing_2 - degrees_2) * 60   
+        minutes_2 = int(remainder_minutes_2)
+        remainder_seconds_2 = (remainder_minutes_2 - minutes_2) * 60 
+        seconds_2 = round(remainder_seconds_2, 2) 
+        dms_bearing = "N    {}-{}-{:.2f}    E".format(degrees_2, minutes_2, seconds_2)
+    
+    elif azimuth_from_the_south > 270 and azimuth_from_the_south < 360:
+        bearing_3 = 360 - azimuth_from_the_south
+        degrees_3 = int(bearing_3)  
+        remainder_minutes_3 = (bearing_3 - degrees_3) * 60  
+        minutes_3 = int(remainder_minutes_3)
+        remainder_seconds_3 = (remainder_minutes_3 - minutes_3) * 60 
+        seconds_3 = round(remainder_seconds_3, 2) 
+        dms_bearing = "S    {}-{}-{:.2f}    E".format(degrees_3, minutes_3, seconds_3)
+   
+    elif azimuth_from_the_south ==0:
+        dms_bearing = "DUE SOUTH"
+
+    elif azimuth_from_the_south ==90:
+        dms_bearing = "DUE WEST"
+
+    elif azimuth_from_the_south ==180:
+        dms_bearing = "DUE NORTH"
+
+    elif azimuth_from_the_south ==270:
+        dms_bearing = "DUE EAST"
+
+    else:
+        dms_bearing = "NOT APPLICABLE, CHECK INPUT"
+
+# Getting the Latitude and Departure
+    lat = getLatitude(azimuth_from_the_south=float(azimuth_from_the_south), distance=float(distance))
+    dep = getDeparture(azimuth_from_the_south=float(azimuth_from_the_south), distance=float(distance))
+
+# Getting the Summation of Latitude and Departure
+    sumLat += lat
+    sumDep += dep
+    sumDist += float(distance)
+
+# Getting the Correction to Latitude and Departure
+    corr_lat = (-sumLat*(float(distance)/sumDist))
+    corr_dep = (-sumDep*(float(distance)/sumDist))
+
+# Getting the Adjusted Latitude and Departure
+    adjLat = (lat + corr_lat)
+    adjDep = (dep + corr_dep)
+
+# Getting the Adjusted Distance
+    # adjDist = sqrt((adjLat**2) + (adjDep**2))
+
+# Creating a line tuple and adding to lines list
+    line = (counter, distance, dms_bearing, lat, dep, adjLat, adjDep)
+    lines.append(line)
+
+    table.add_row(line)
+
+# Asking the user to continue
+    yn = input("ADD NEW LINE [yes/no]?")
+    if yn.lower() == "yes" or yn.lower() == "y":
+        counter = counter + 1
+        continue
+    else:
+        break
+
+# Printing
+print("\n\n")
+print(table)
+
+print("SUMMATION OF LAT:", sumLat)
+print("SUMMATION OF DEP:", sumDep)
+print("SUMMATION OF DIST:", sumDist)
+
+lec = sqrt((sumLat ** 2) + (sumDep ** 2))
+
+print("LEC: ", lec)
+
+REC = sumDist / lec
+
+print("REC = 1: ", round(REC, -3))
+
+print("--------------END----------------")

@@ -33,7 +33,7 @@ while True:
                print("Invalid Syntax. Distance must be a number.")
 
     # Input Azimuth
-    azimuth = float(input("ENTER AZIMUTH FROM THE SOUTH (in decimal degrees): ")) # 92.44
+    // azimuth = float(input("ENTER AZIMUTH FROM THE SOUTH (in decimal degrees): ")) # 92.44
 
 # Converting Decimal Degrees to Degrees-Minutes-Seconds
 
